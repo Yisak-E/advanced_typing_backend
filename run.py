@@ -1,6 +1,8 @@
-from app.create_app import create_app
+from app.config import create_app
+import os
 
-app = create_app()
+read_env = os.environ.get('FLASK_ENV', 'development')
+app = create_app(read_env)
 
 if __name__ == "__main__":
     app.run(debug=True)
