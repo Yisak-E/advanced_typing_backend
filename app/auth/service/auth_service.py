@@ -1,118 +1,114 @@
-# AuthService IS RESPONSIBLE FOR:
-#     - validating input
-#     - applying business rules
-#     - coordinating models & repositories
-
-# AuthService IS NOT RESPONSIBLE FOR:
-#     - HTTP requests / responses
-#     - direct database access
-#     - JWT configuration details
-
-
 from app.auth.models.user import User
-from app.core import db
 from app.users.models.user_profile import UserProfile
+from app.extensions import db
+from app.auth.repository.user_repository import UserRepository
+from app.users.repository.user_profile_repository import UserProfileRepository
+from app.auth.repository.refresh_token_repository import RefreshTokenRepository
+from app.core.jwt import create_access_token, create_refresh_token
+
+
+user_repository = UserRepository()
+profile_repository = UserProfileRepository()
+refresh_token_repository = RefreshTokenRepository()
 
 
 def register_user(input_data):
+    username = input_data.get("username")
+    email = input_data.get("email")
+    password = input_data.get("password")
+    role = input_data.get("role", "user")
 
-    username = input_data.get('username')
-    email = input_data.get('email')
-    password = input_data.get('password')
-    role = input_data.get('role', 'user')
-    # Input validation
-    if None in [username, email, password]:
-        raise ValueError("Username, email, and password are required.")
+    # ---------- validation ----------
+    if not username or not email or not password:
+        raise ValueError("Username, email, and password are required")
+
     if len(password) < 4:
-        raise ValueError("Password must be at least 4 characters long.")
-    # Business rules
-    existing_user = User.find_by_email(email)
-    if existing_user:
-        raise ValueError("Email already registered.")
-    # Create user
-    user = User.create_user(username, email, password, role)
+        raise ValueError("Password too short")
 
-    # save user using user-repository (if exists)
+    # ---------- business rules ----------
+    if user_repository.find_by_email(email):
+        raise ValueError("Email already registered")
 
-    userProfile = UserProfile(
-        user_id=user.id, 
+    # ---------- create user ----------
+    user = User(username=username, email=email, role=role)
+    user.set_password(password)
+
+    user_repository.save(user)
+    db.session.flush()  # ensures user.id exists
+
+    # ---------- create profile ----------
+    profile = UserProfile(
+        user_id=user.id,
         display_name=username,
-        profile_visibility='public'
+        profile_visibility="public",
     )
-    # save user profile using user-profile-repository (if exists)
+
+    profile_repository.save(profile)
+
+    db.session.commit()
+
+    return user
 
 
 
 def login_user(input_data):
-    email_or_username = input_data.get('username', 'email')
-    password = input_data.get('password')
-    # Input validation
-    if None in [email_or_username, password]:
-        raise ValueError("Email and password are required.")
-    # Find user
-    user = User.find_by_email(email_or_username)
-    if not user:
-        user = User.find_by_username(email_or_username)
+    identifier = input_data.get("identifier")
+    password = input_data.get("password")
+
+    if not identifier or not password:
+        raise ValueError("Identifier and password required")
+
+    user = (
+        user_repository.find_by_email(identifier)
+        or user_repository.find_by_username(identifier)
+    )
 
     if not user or not user.check_password(password):
-        raise ValueError("Invalid email or password.")
+        raise ValueError("Invalid credentials")
+
     if not user.is_active:
-        raise ValueError("User account is deactivated.")
-    # Update last login
-    user.update_last_login()
-    access_token = user.generate_jwt()
-    refrash_token = user.generate_refresh_jwt()
+        raise ValueError("Account deactivated")
+
+    user.last_login = db.func.now()
+
+    access_token = create_access_token(user)
+    refresh_token = create_refresh_token(user)
+
+    refresh_token_repository.save(refresh_token)
+
+    db.session.commit()
 
     return {
-        'access_token': access_token,
-        'refresh_token': refrash_token,
-        'user': user.to_dict()
+        "access_token": access_token,
+        "refresh_token": refresh_token.token,
+        "user": user.serialize(),
     }
 
 
-# FUNCTION logout_user(user_id, refresh_token):
-
-    # FIND RefreshToken BY token
-    #     IF not found:
-    #         RETURN success (idempotent)
-
-    # MARK RefreshToken AS revoked
-
-    # SAVE RefreshToken
-
-    # RETURN success
 
 
-def logout_user(user_id, refresh_token):
+def logout_user(refresh_token_str):
+    token = refresh_token_repository.find_by_token(refresh_token_str)
 
-    token = RefreshToken.find_by_token(refresh_token)
     if not token:
-        return  # Idempotent logout
+        return
 
     token.revoked = True
     db.session.commit()
 
-# FUNCTION logout_user(user_id, refresh_token):
 
-#     FIND RefreshToken BY token
-#         IF not found:
-#             RETURN success (idempotent)
 
-#     MARK RefreshToken AS revoked
+def refresh_access_token(refresh_token_str):
+    token = refresh_token_repository.find_by_token(refresh_token_str)
 
-#     SAVE RefreshToken
+    if not token or not token.is_valid():
+        raise ValueError("Invalid refresh token")
 
-#     RETURN success
+    user = user_repository.find_by_id(token.user_id)
 
-def refresh_access_token(refresh_token):
-    token = RefreshToken.find_by_token(refresh_token)
-    if not token or token.revoked:
-        raise ValueError("Invalid refresh token.")
-    user = User.find_by_id(token.user_id)
     if not user or not user.is_active:
-        raise ValueError("User account is deactivated.")
-    new_access_token = user.generate_jwt()
-    return {
-        'access_token': new_access_token
-    }
+        raise ValueError("Account deactivated")
 
+    return {
+        "access_token": create_access_token(user)
+    }

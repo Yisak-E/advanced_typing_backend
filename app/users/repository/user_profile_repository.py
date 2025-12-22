@@ -1,14 +1,17 @@
-
 from app.users.models.user_profile import UserProfile
+from app.extensions import db
 
 
 class UserProfileRepository:
 
-    def get_user_profile_by_id(self,user_id):
+    def find_by_user_id(self, user_id):
         return UserProfile.query.filter_by(user_id=user_id).first()
-    
-    def save_user_profile(self, user_profile):
-        from app.extensions import db
+
+    def save(self, user_profile, flush=False):
         db.session.add(user_profile)
-        db.session.commit()
+        if flush:
+            db.session.flush()
         return user_profile
+
+    def delete(self, user_profile):
+        db.session.delete(user_profile)
