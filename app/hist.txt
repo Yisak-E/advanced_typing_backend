@@ -1,0 +1,680 @@
+    1  clear
+    2  ls
+    3  rm *
+    4  cler
+    5  clear
+    6  ls
+    7  touch {a..d}
+    8  ls
+    9  mkdir {1..4}
+   10  ls
+   11  tar -cf arch.tar {1, 2, 3, 4, a, b, c, d}
+   12  tar -cf arch.tar 1 2 3 4 a b c d
+   13  clear
+   14  ls
+   15  mkdir somew
+   16  mv arch.tar somew
+   17  ls
+   18  clear
+   19  cd somew
+   20  tar -tf arch.tar
+   21  ls
+   22  gzip arch.tar
+   23  ls -lh
+   24  gzip -d  arch.tar.gz
+   25  ls
+   26  gzip -kv arch.tar
+   27  ls -lh
+   28  clear
+   29  ls
+   30  tar -czf bund.tar *
+   31  ls
+   32  ls -lh
+   33  history | less
+   34  history | tail 50
+   35  history | tail -n 50
+   36  clear
+   37  ls 
+   38  rm -ri *
+   39  clear
+   40  echo "holla bunos dias?"> simple
+   41  ls
+   42  cat simple
+   43  nano simple
+   44  ls
+   45  cat samp1 simple
+   46  rm -ri *
+   47  clear
+   48  nano kfc.sh
+   49  ls
+   50  chmode +x kfc.sh
+   51  chmod +x kfc.sh
+   52  ./kfc.sh
+   53  ls
+   54  cd Metaferiya/
+   55  cd Demelash/
+   56  cd Yisak/
+   57  ls
+   58  cat LoveLetter.txt 
+   59  clear
+   60  ls
+   61  cd ../../..
+   62  clear_console
+   63  cloud-id
+   64  col
+   65  c++
+   66  man c++
+   67  clear
+   68  sudo apt update
+   69  sudo apt install mailutils
+   70  celar
+   71  clear
+   72  echo "Test email from cron setup" | mail -s "Cron Test" yisakmetaferiya1@gmail.com
+   73  sudo shutdown now
+   74  pwd
+   75  ls
+   76  nano auto-commit-notes.sh
+   77  chmod +x auto-commit-notes.sh
+   78  crontab -e
+   79  clear
+   80  mail
+   81  echo "this is local system mail" | mail -s "Local test" yisak-ubuntu
+   82  sudo apt update
+   83  sudo apt install postfix
+   84  echo "Local mail works!" | mail -s "Postfix Test" yisak-ubuntu
+   85  mail
+   86  clear
+   87  echo "Local mail works!" | mail -s "Postfix Test" yisak-ubuntu
+   88  mail
+   89  clear
+   90  ls
+   91  systemctl status postfix
+   92  clear
+   93  jobs
+   94  fg
+   95  clear
+   96  ps
+   97  kill -kill 11050
+   98  clear
+   99  jobs
+  100  clear
+  101  systemctl status postfix
+  102  clear
+  103  la
+  104  vim auto-commit-notes.sh
+  105  nano auto-commit-notes.sh
+  106  xlear
+  107  clear
+  108  crontab -e
+  109  clear
+  110  la
+  111  cd .pending_commit
+  112  ls
+  113  cat cron.log
+  114  crontab -e
+  115  clee
+  116  clear
+  117  who
+  118  cd ~
+  119  who
+  120  su yisak
+  121  su yisak-ubuntu
+  122  nano ~/learning-notes/auto-commit-notes.sh
+  123  chmod +x  ~/learning-notes/auto-commit-notes.sh
+  124  crontab -e
+  125  clear
+  126  nano ~/learning-notes/auto-commit-notes.sh
+  127  chmod +x  ~/learning-notes/auto-commit-notes.sh
+  128  nano ~/learning-notes/auto-commit-notes.sh
+  129  cat  ~/learning-notes/auto-commit-notes.sh
+  130  clear
+  131  nano ~/learning-notes/auto-commit-notes.sh
+  132  chmod +x  ~/learning-notes/auto-commit-notes.sh
+  133  ~/learning-notes/auto-commit-notes.sh
+  134  nano ~/learning-notes/auto-commit-notes.sh
+  135  ~/learning-notes/auto-commit-notes.sh
+  136  cd ~
+  137  cd /home/yisak-ubuntu
+  138  cd /home
+  139  cd yisak-ubuntu
+  140  mkdir learning-notes
+  141  ls
+  142  cd learning-notes
+  143  ls
+  144  git init
+  145  echo "# learning-notes" >> README.md
+  146  git init
+  147  git add README.md
+  148  git commit -m "first commit"
+  149  git branch -M main
+  150  git remote add origin git@github.com:Yisak-E/learning-notes.git
+  151  git push -u origin main
+  152  clear
+  153  code .
+  154  man code
+  155  sudo snap install code
+  156  sudo snap install code --classic
+  157  code .
+  158  clontab -e
+  159  crontab -e
+  160  crontab -l
+  161  crontab -e
+  162  clear
+  163  who
+  164  clear
+  165  su -
+  166  clear
+  167  sudo snap install foliate
+  168  code
+  169  sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc podman-docker containerd runc | cut -f1)
+  170  # Add Docker's official GPG key:
+  171  sudo apt update
+  172  sudo apt install ca-certificates curl
+  173  sudo install -m 0755 -d /etc/apt/keyrings
+  174  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+  175  sudo chmod a+r /etc/apt/keyrings/docker.asc
+  176  # Add the repository to Apt sources:
+  177  sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+  178  Types: deb
+  179  URIs: https://download.docker.com/linux/ubuntu
+  180  Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+  181  Components: stable
+  182  Signed-By: /etc/apt/keyrings/docker.asc
+  183  EOF
+  184  sudo apt update
+  185  clear
+  186  sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  187  clear
+  188  sudo systemctl status docker
+  189  clear
+  190  sudo docker run hello-world
+  191  clear
+  192  sudo docker run hello-world
+  193  clear
+  194  crontab -e
+  195  ls
+  196  cd docker
+  197  ls
+  198  cat intro.md
+  199  clear
+  200  cd ..
+  201  chmod +x  ~/learning-notes/auto-commit-notes.sh
+  202  ~/learning-notes/auto-commit-notes.sh
+  203  nano ~/learning-notes/auto-commit-notes.sh
+  204  cat  ~/learning-notes/auto-commit-notes.sh
+  205  clear
+  206  mail
+  207  jobs
+  208  fg
+  209  clear
+  210  ps
+  211  kill -9 28326
+  212  clear
+  213  nano ~/learning-notes/auto-commit-notes.sh
+  214  chmod +x  ~/learning-notes/auto-commit-notes.sh
+  215  mail
+  216  cat  ~/learning-notes/auto-commit-notes.sh
+  217  echo "tester" | mail -s "Hello Isaac" "oneperson.is72@gmail.com"
+  218  echo "tester" | mail -s "Hello Isaac" "yisakmetaferiya1@gmail.com"
+  219  clear
+  220  sudo apt update
+  221  sudo apt install postfix libsasl2-modules mailutils
+  222  sudo nano /etc/postfix/main.cf
+  223  clear
+  224  sudo nano /etc/postfix/sasl_passwd
+  225  sudo chmod 600 /etc/postfix/sasl_passwd
+  226  sudo postmap /etc/postfix/sasl_passwd
+  227  sudo systemctl restart postfix
+  228  echo "Gmail relay works!" | mail -s "Postfix Gmail Test" oneperson.is72@gmail.com
+  229  echo "tester" | mail -s "Hello Isaac" "oneperson.is72@gmail.com"
+  230  chmod +x  ~/learning-notes/auto-commit-notes.sh
+  231  ~/learning-notes/auto-commit-notes.sh
+  232  nano ~/learning-notes/auto-commit-notes.sh
+  233  chmod +x  ~/learning-notes/auto-commit-notes.sh
+  234  ~/learning-notes/auto-commit-notes.sh
+  235  crontab -e
+  236  clear
+  237  crontab -l
+  238  clear
+  239  nano ~/learning-notes/auto-commit-notes.sh
+  240  chmod +x ~/learning-notes/auto-commit-notes.sh
+  241  ~/learning-notes/auto-commit-notes.sh
+  242  cat ~/learning-notes/auto-commit-notes.sh
+  243  clear
+  244  nano ~/learning-notes/auto-commit-notes.sh
+  245  chmod +x ~/learning-notes/auto-commit-notes.sh
+  246  ~/learning-notes/auto-commit-notes.sh
+  247  clear
+  248  cat ~/learning-notes/auto-commit-notes.sh
+  249  clear
+  250  git rm --cached .pending_commit .approval_notified COMMIT_MESSAGE.txt auto-commit.log cron.log
+  251  git add .gitignore
+  252  git commit -m "Ignore runtime state and log files"
+  253  git push
+  254  clear
+  255  crontab -e
+  256  mail oneperson.is72@gmail.com
+  257  fg
+  258  jobs
+  259  ps
+  260  kill -kill mail
+  261  killall -kill mail
+  262  killall -e mail
+  263  ps
+  264  clear
+  265  killall -9e mail
+  266  ps
+  267  clear
+  268  sudo lock
+  269  date
+  270  time
+  271  TIME
+  272  Time
+  273  clear
+  274  wget https://tldp.org/LDP/GNU-Linux-Tools-Summary.pdf 
+  275  sudo shutdown now
+  276  npm run dev
+  277  cd src/
+  278  cd app/
+  279  ls
+  280  rm -ri */
+  281  cd ..components
+  282  clear
+  283  cd ..
+  284  cd components/
+  285  clear
+  286  ls
+  287  mkdir layout
+  288  mv Footer.tsx Navbar.tsx layout/
+  289  ls
+  290  clear
+  291  ls
+  292  mkdir sections ui
+  293  mv CarCard.tsx ui/
+  294  clear
+  295  ls
+  296  rm Header/
+  297  rm -ri .
+  298  rm -ri *
+  299  clear
+  300  ls
+  301  mv SearchWidget.tsx ui/
+  302  clear
+  303  ls
+  304  npx create-next-app@latest frontend
+  305  clear
+  306  ls
+  307  rm -r frontend/
+  308  clear
+  309  npm install
+  310  clear
+  311  cd ../..
+  312  npm uninstall tailwindcss @tailwindcss/vite
+  313  rm -f postcss.config.js
+  314  rm -f tailwind.config.js
+  315  npm install -D tailwindcss postcss autoprefixer
+  316  npx tailwindcss init -p
+  317  clear
+  318  npm install -D @tailwindcss/cli
+  319  npx tailwindcss init -p
+  320  clear
+  321  npm uninstall tailwindcss
+  322  npm install -D tailwindcss@3 postcss autoprefixer
+  323  npx tailwindcss init -p
+  324  clear
+  325  cd src/
+  326  cd app/
+  327  cd cars/
+  328  clear
+  329  touch carsClient.tsx
+  330  git remote -v
+  331  git remote show origin
+  332  git add .
+  333  git commit -m "restracture the project with proper nextjs principles"
+  334  git push origin version2 
+  335  clear
+  336  cd ../(marketing)
+  337  cd ..
+  338  ls
+  339  cd '(marketing)'
+  340  clear
+  341  ls
+  342  touch page.tsx
+  343  mkdir services testimoony contact
+  344  touch {sercices,testimony,contact}/page.tsx
+  345  touch {services,testimoony}/page.tsx
+  346  clear
+  347  ls
+  348  mv testimoony/ testimony
+  349  ls
+  350  clear
+  351  touch layout.tsx
+  352  cd ..
+  353  ls
+  354  cd ..
+  355  ls
+  356  cd components/
+  357  ls
+  358  cd sections/
+  359  ls
+  360  touch Hero.tsx Services.tsx Testimony.tsx
+  361  clear
+  362  cd ../../
+  363  cd ..
+  364  git add .
+  365  git commit -m "now majer routing and stracture finished"
+  366  git push origin main
+  367  git push origin version2 
+  368  clear
+  369  git status
+  370  git add .
+  371  git commit -m "now majer routing and stracture finished"
+  372  git push origin version2 
+  373  clear
+  374  npm install nodemailer
+  375  git pull
+  376  history | tail -n 50
+  377  history | tail -n 100
+  378  clear
+  379  ls
+  380  cd Bash_script_notes/
+  381  ls
+  382  cd imageDownload/
+  383  ls
+  384  chmod +x script.sh
+  385  script.sh
+  386  /script.sh
+  387  mv script.sh ./scripts/download-images.sh
+  388  mkdir scripts
+  389  mv script.sh ./scripts/download-images.sh
+  390  clear
+  391  chmod +x ./scripts/download-images.sh
+  392  ./scripts/download-images.sh
+  393  ls
+  394  mv imgurl.txt ./scripts/
+  395  ./scripts/download-images.sh
+  396  clear
+  397  ls
+  398  cd public
+  399  ls
+  400  cd images
+  401  ls
+  402  cd destinations/
+  403  ls
+  404  cat image_1.jpg
+  405  clear
+  406  ls
+  407  mv * /home/yisak-ubuntu/Projects/car_rental/car_rent_and_tour_frontend/public/images/destinations
+  408  ls
+  409  sudo nano /etc/postfix/sasl_passwd
+  410  npm run dec
+  411  npm run dev
+  412  clear
+  413  npm run build
+  414  vercel
+  415  git add . && git commit -m "update" && git push origin main
+  416  npm run dev
+  417  git add . && git commit -m "update" && git push origin main
+  418  clear
+  419  cd ..
+  420  mkdir CharityPlatform
+  421  cd CharityPlatform/
+  422  npx create-next-app@latest mycharity --typescript
+  423  history | tail 100
+  424  history | tail -n 100
+  425  clear
+  426  cd mycharity/
+  427  echo "# mycharity_frontend" >> README.md
+  428  git init
+  429  git add README.md
+  430  git commit -m "first commit"
+  431  git branch -M main
+  432  git remote add origin git@github.com:Yisak-E/mycharity_frontend.git
+  433  git push -u origin main
+  434  ls
+  435  chmod +x ./create-structure.sh
+  436  ./create-structure.sh
+  437  chmod +x ./create-structure.sh
+  438  ./create-structure.sh
+  439  ls
+  440  mkdir -p public/images/programs public/images/stories
+  441  # Programs images
+  442  curl -L "https://source.unsplash.com/1200x800/?education,africa" -o public/images/programs/education.jpg
+  443  curl -L "https://source.unsplash.com/1200x800/?clean-water,africa" -o public/images/programs/water.jpg
+  444  curl -L "https://source.unsplash.com/1200x800/?healthcare,africa" -o public/images/programs/health.jpg
+  445  # Stories images
+  446  curl -L "https://source.unsplash.com/1200x800/?school,africa" -o public/images/stories/school.jpg
+  447  curl -L "https://source.unsplash.com/1200x800/?village,africa" -o public/images/stories/water.jpg
+  448  clear
+  449  ls
+  450  cd public
+  451  ls
+  452  cd images/
+  453  ls
+  454  cd programs/
+  455  ls
+  456  cd ..
+  457  cd stories/
+  458  ls
+  459  cd ../
+  460  cd ../..
+  461  clear
+  462  mkdir -p public/images/programs public/images/stories
+  463  # Programs (stable seeds -> consistent images)
+  464  curl -L "https://picsum.photos/seed/ethioimpact-education/1200/800.jpg" -o public/images/programs/education.jpg
+  465  curl -L "https://picsum.photos/seed/ethioimpact-water/1200/800.jpg" -o public/images/programs/water.jpg
+  466  curl -L "https://picsum.photos/seed/ethioimpact-health/1200/800.jpg" -o public/images/programs/health.jpg
+  467  # Stories (stable seeds)
+  468  curl -L "https://picsum.photos/seed/ethioimpact-school/1200/800.jpg" -o public/images/stories/school.jpg
+  469  curl -L "https://picsum.photos/seed/ethioimpact-village/1200/800.jpg" -o public/images/stories/village.jpg
+  470  curl -L "https://picsum.photos/seed/ethioimpact-community/1200/800.jpg" -o public/images/stories/community.jpg
+  471  git add . && git commit -m "project stracture with significant progress" && git push origin main
+  472  clear
+  473  git add . && git commit -m "project stracture and short description" && git push origin main
+  474  clear
+  475  sudo shutdown now
+  476  code
+  477  git add . && git commit -m "production safe send email server code"
+  478  git push origin main
+  479  clear
+  480  cd python_ai_models/
+  481  pip install numpy
+  482  ython3 -m venv ./venv
+  483  python3 -m vene ./venv
+  484  clear
+  485  python3 -m venv ./venv
+  486  pip install numpy
+  487  clear
+  488  source ./venv/bin/activate
+  489  pip install numpy
+  490  pip install pandas
+  491  pip install scikit-learn
+  492  python3 -c "import sklearn; print(sklearn.__version__)"
+  493  clear
+  494  copilot 
+  495  copilot --help
+  496  copilot --banner
+  497  copilot help
+  498  pwd
+  499  copilot help
+  500  source /home/yisak-ubuntu/Projects/TypingClub/typing_club_backend/.venv/bin/activate
+  501  mysql u root -p
+  502  clear
+  503  mysql -u root -p
+  504  clear
+  505  mysql -u typing_user -p typing_club_adv
+  506  source /home/yisak-ubuntu/Projects/TypingClub/typing_club_backend/.venv/bin/activate
+  507  source /home/yisak-ubuntu/Projects/TypingClub/typing_club_backend/.venv/bin/activate
+  508  /home/yisak-ubuntu/Projects/TypingClub/typing_club_backend/.venv/bin/python
+  509  clear
+  510  mysql -u typing_user -p typing_club_adv
+  511  cd ..
+  512  ls
+  513  cd Projects/
+  514  ls
+  515  cd TypingClub/
+  516  ls
+  517  touch init_backend.sh
+  518  nano init_backend.sh
+  519  chmod +x init_backend.sh
+  520  ./init_backend.sh
+  521  clear
+  522  ls
+  523  tree typing_club_backend/
+  524  Clear
+  525  clear
+  526  code .
+  527  git status
+  528  ls
+  529  git typing_club_backend
+  530  cd typing_club_backend
+  531  clear
+  532  git status
+  533  git init
+  534  gut init master
+  535  git init .
+  536  clear
+  537  git commit -m "initial commit"
+  538  git add .
+  539  git commit -m "initial commit"
+  540  git commit -m "project structure"
+  541  git branch -M main
+  542  git remote add origin git@github.com:Yisak-E/advanced_typing_backend.git
+  543  git push -u origin main
+  544  clear
+  545  code .
+  546  tree .
+  547  touch app/auth/models/user.py
+  548  touch app/auth/models/refresh_token.py
+  549  touch app/users/models/user_profile.py
+  550  git add .
+  551  git commit -m "user and userprofile model simi-finished part"
+  552  git push origin main'
+  553  '
+  554  git push origin main
+  555  clear
+  556  git status
+  557  git add .
+  558  git commit -m "repositories and services (for auth)"
+  559  git push origin main
+  560  clear
+  561  export FLASK_APP=run.py
+  562  export FLASK_ENV=development
+  563  flask db init
+  564  source .venv/bin/activate
+  565  flask db init
+  566  pip install -r requirements.txt
+  567  clear
+  568  flask db init
+  569  clear
+  570  flask db init
+  571  flask db migrate
+  572  flask db upgrade
+  573  clear
+  574  ls app/create_app.py
+  575  export FLASK_APP=run.py
+  576  export FLASK_ENV=development
+  577  export FLASK_APP=run.py
+  578  export FLASK_ENV=development
+  579  flask --version
+  580  flask db init
+  581  flask --help
+  582  clear
+  583  sed -n '1,10p' run.py
+  584  cat <<'EOF' > run.py
+  585  import os
+  586  from app.create_app import create_app
+  587  env = os.environ.get("FLASK_ENV", "development")
+  588  app = create_app(env)
+  589  if __name__ == "__main__":
+  590      app.run(debug=True)
+  591  EOF
+  592  sed -n '1,10p' run.py
+  593  export FLASK_APP=run.py
+  594  flask db init
+  595  clear
+  596  sed -n '1,200p' app/auth/routes/auth_route.py
+  597  clear
+  598  export FLASK_APP=run.py
+  599  flask db init
+  600  clear
+  601  export FLASK_APP=run.py
+  602  flask db init
+  603  clear
+  604  flask db init
+  605  export FLASK_APP=run.py
+  606  flask db init
+  607  clear
+  608  flask db init
+  609  clear
+  610  flask db init
+  611  flask db migrate -m "initial auth and user profile tables"
+  612  flask db upgrade
+  613  flask shell
+  614  clear
+  615  flask db migrate -m "increase password_hash length"
+  616  flask db upgrade
+  617  clear
+  618  flask shell
+  619  clear
+  620  python run.py
+  621  clear
+  622  python run.py
+  623  clear
+  624  python run.py
+  625  clear
+  626  python run.py
+  627  clear
+  628  python run.py
+  629  clear
+  630  flask run
+  631  clear
+  632  python run.py
+  633  clear
+  634  code .
+  635  token = db.Column(db.String(1024), nullable=False, unique=True)
+  636  clear
+  637  flask db migrate -m "Increase refresh token length"
+  638  flask db upgrade
+  639  clear
+  640  flask db migrate -m "Increase refresh token length"
+  641  flask db init
+  642  clear
+  643  flask db migrate -m "Increase refresh token length"
+  644  flask db upgrade
+  645  clear
+  646  ls migrations/versions
+  647  rm -rf migrations
+  648  flask db init
+  649  flask db migrate -m "baseline schema"
+  650  rm -rf migrations
+  651  flask db init
+  652  flask db migrate -m "baseline schema"
+  653  rm -rf migrations
+  654  flask db init
+  655  clear
+  656  flask db migrate -m "baseline schema"
+  657  flask db stamp head
+  658  flask db current
+  659  python run.py
+  660  npm run dev
+  661  clear
+  662  npm run dev
+  663  npm install -D tailwindcss@latest @tailwindcss/postcss@latest postcss@latest
+  664  clear
+  665  npm run dev
+  666  cd src/components/sections/
+  667  touch Hero
+  668  mv Hero Hero.tsx
+  669  clear
+  670  cd ../layout/
+  671  touch {Footer,Nav}.tsx
+  672  ls
+  673  mv Nav.tsx NavBar.tsx
+  674  cd ../..
+  675  cd app/
+  676  cd "(auth)"/
+  677  touch {login,register}/{page,layout}.tsx
+  678  source /home/yisak-ubuntu/Projects/TypingClub/typing_club_backend/.venv/bin/activate
+  679  clear
+  680  history > ./app/hist.txt

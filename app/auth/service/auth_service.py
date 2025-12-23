@@ -1,3 +1,5 @@
+import datetime
+from app.auth.models.refresh_token import RefreshToken
 from app.auth.models.user import User
 from app.users.models.user_profile import UserProfile
 from app.extensions import db
@@ -69,15 +71,17 @@ def login_user(input_data):
     if not user.is_active:
         raise ValueError("Account deactivated")
 
-    user.last_login = db.func.now()
-
     access_token = create_access_token(user)
-    refresh_token = create_refresh_token(user)
+    refresh_token_str = create_refresh_token(user)
+
+    refresh_token = RefreshToken(
+        token=refresh_token_str,
+        user_id=user.id,
+        expires_at=datetime.datetime.utcnow() + datetime.timedelta(days=7)
+    )
 
     refresh_token_repository.save(refresh_token)
-
     db.session.commit()
-
     return {
         "access_token": access_token,
         "refresh_token": refresh_token.token,

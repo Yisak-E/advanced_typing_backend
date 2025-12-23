@@ -1,7 +1,7 @@
 
 
 from app.auth.models.refresh_token import RefreshToken
-from app.core import db
+from app.extensions import db
 
 
 class RefreshTokenRepository:
@@ -11,10 +11,9 @@ class RefreshTokenRepository:
     
     def save(self, refresh_token):
         db.session.add(refresh_token)
-        db.session.commit()
         return refresh_token
+
     
     def revoke(self, refresh_token):
         db.session.delete(refresh_token)
-        db.session.commit()
         return True

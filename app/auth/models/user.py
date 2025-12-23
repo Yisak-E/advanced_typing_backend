@@ -1,4 +1,4 @@
-from app.core import db
+from app.extensions import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -10,7 +10,7 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
 
-    password_hash = db.Column(db.String(128), nullable=False)
+    password_hash = db.Column(db.String(255), nullable=False)
 
     role = db.Column(db.String(50), default="user")
     is_active = db.Column(db.Boolean, default=True)
