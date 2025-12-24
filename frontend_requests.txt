@@ -1,0 +1,52 @@
+# Frontend request examples for TypingClub backend
+
+## Auth
+POST /auth/register
+Headers: Content-Type: application/json
+Body:
+{
+  "username": "newuser",
+  "email": "newuser@example.com",
+  "password": "newpass"
+}
+
+POST /auth/login
+Headers: Content-Type: application/json
+Body:
+{
+  "identifier": "newuser@example.com",  // or username
+  "password": "newpass"
+}
+Response contains: access_token, refresh_token, user, profile.
+
+## Profiles
+GET /profiles/me
+Headers:
+  Authorization: Bearer <access_token>
+(no body)
+
+PUT /profiles/me
+Headers:
+  Content-Type: application/json
+  Authorization: Bearer <access_token>
+Body (any subset of these fields):
+{
+  "display_name": "New Name",
+  "bio": "About me",
+  "avatar_url": "https://example.com/avatar.png",
+  "country": "US",
+  "profile_visibility": "public"  // public | private | friends-only
+}
+
+## Frontend alignment notes
+- Login/register payloads: `{identifier,password}` to /auth/login; `{username,email,password}` to /auth/register` (frontend matches).
+- Tokens: axios client sends `Authorization: Bearer <access_token>` from `localStorage.token` (set from `data.access_token` in login response).
+- Response shape: backend wraps login payload under `data`; frontend consumes `res.data` to access `access_token`, `refresh_token`, `user`, `profile` correctly.
+- Profiles: GET /profiles/me sends only the Bearer header; PUT /profiles/me sends Bearer header plus optional profile fields; matches `profile.service.ts`.
+- Errors: 401/404/400 bubble as axios errors; frontend currently surfaces them without special handling.
+
+## Expected status codes
+- 200: success (profile data returned for GET/PUT)
+- 400: validation/business rule failure (e.g., register/login invalid data)
+- 401: missing/invalid/expired token on protected routes
+- 404: profile not found (GET /profiles/me)

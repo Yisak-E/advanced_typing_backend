@@ -1,17 +1,17 @@
 import datetime
+
+
 from app.auth.models.refresh_token import RefreshToken
 from app.auth.models.user import User
 from app.users.models.user_profile import UserProfile
 from app.extensions import db
 from app.auth.repository.user_repository import UserRepository
-from app.users.repository.user_profile_repository import UserProfileRepository
-from app.auth.repository.refresh_token_repository import RefreshTokenRepository
+from app.users.repository.user_profile_repository import user_profile_repository
+from app.auth.repository.refresh_token_repository import refresh_token_repository
 from app.core.jwt import create_access_token, create_refresh_token
 
 
 user_repository = UserRepository()
-profile_repository = UserProfileRepository()
-refresh_token_repository = RefreshTokenRepository()
 
 
 def register_user(input_data):
@@ -45,11 +45,13 @@ def register_user(input_data):
         profile_visibility="public",
     )
 
-    profile_repository.save(profile)
+    user_profile_repository.save(profile, False)
 
     db.session.commit()
 
-    return user
+    return {
+        "user": user.serialize()
+    }
 
 
 
@@ -77,15 +79,22 @@ def login_user(input_data):
     refresh_token = RefreshToken(
         token=refresh_token_str,
         user_id=user.id,
-        expires_at=datetime.datetime.utcnow() + datetime.timedelta(days=7)
+        expires_at=datetime.datetime.now(datetime.UTC) + datetime.timedelta(days=7)
     )
 
-    refresh_token_repository.save(refresh_token)
+    refresh_token_repository.save(refresh_token, False)
+
+    profile = (
+        user_profile_repository.find_by_user_id(user.id)
+
+    )
     db.session.commit()
     return {
         "access_token": access_token,
         "refresh_token": refresh_token.token,
         "user": user.serialize(),
+        "profile": profile.serialize(),
+
     }
 
 

@@ -1,0 +1,3 @@
+from app.users.repository.user_profile_repository import user_profile_repository
+
+# ...existing code...

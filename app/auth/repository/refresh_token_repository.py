@@ -1,19 +1,20 @@
-
-
 from app.auth.models.refresh_token import RefreshToken
 from app.extensions import db
 
 
 class RefreshTokenRepository:
-    def find_by_token(self, token):
-        refresh_token = RefreshToken.query.filter_by(token=token).first()
-        return refresh_token
-    
-    def save(self, refresh_token):
+    def save(self, refresh_token, flush=False):
         db.session.add(refresh_token)
+        if flush:
+            db.session.flush()
         return refresh_token
 
-    
+    def find_by_token(self, token):
+        return RefreshToken.query.filter_by(token=token).first()
+
     def revoke(self, refresh_token):
         db.session.delete(refresh_token)
         return True
+
+
+refresh_token_repository = RefreshTokenRepository()
