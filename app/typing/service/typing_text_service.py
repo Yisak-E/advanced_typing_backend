@@ -86,4 +86,3 @@ def get_typing_texts_by_language(language):
     return {
         "typing_texts": [text.serialize() for text in texts]
     }
-
