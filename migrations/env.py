@@ -1,9 +1,20 @@
+# migrations/env.py (TOP OF FILE)
+
+from app.auth.models.user import User
+from app.auth.models.refresh_token import RefreshToken
+from app.users.models.user_profile import UserProfile
+from app.stats.models.typing_stats import TypingStats
+from app.typing.models.typing import TypingText
+from app.leaderboard.models.leaderboard import Leaderboard  # 👈 THIS IS THE MISSING ONE
+
+
 import logging
 from logging.config import fileConfig
 
 from flask import current_app
 
 from alembic import context
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

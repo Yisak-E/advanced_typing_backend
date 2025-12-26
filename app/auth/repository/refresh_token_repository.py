@@ -12,9 +12,11 @@ class RefreshTokenRepository:
     def find_by_token(self, token):
         return RefreshToken.query.filter_by(token=token).first()
 
-    def revoke(self, refresh_token):
-        db.session.delete(refresh_token)
-        return True
+    def revoke(self, refresh_token, commit=False):
+        refresh_token.revoked = True
+        if commit:
+            db.session.commit()
+        return refresh_token
 
 
 refresh_token_repository = RefreshTokenRepository()

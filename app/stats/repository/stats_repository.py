@@ -10,7 +10,7 @@ class StatsRepository:
         return TypingStats.query.filter_by(id=stats_id).first()
 
     def get_stats_by_user_id(self, user_id):
-        return TypingStats.query.filter_by(user_id=user_id).all()
+        return TypingStats.query.filter_by(user_id=user_id).order_by(TypingStats.created_at.desc()).all()
 
     def save_stats(self, stats):
         db.session.add(stats)

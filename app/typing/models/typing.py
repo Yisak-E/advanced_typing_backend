@@ -3,7 +3,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class TypingText(db.Model):
-    --tablename__ = "typing_texts"
+    __tablename__ = "typing_texts"
+
     id = db.Column(db.Integer, primary_key=True)
     level = db.Column(db.Enum("beginner", "intermediate", "advanced"), nullable=False)
     content = db.Column(db.Text, nullable=False)

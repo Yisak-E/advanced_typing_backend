@@ -7,7 +7,7 @@ class RefreshToken(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    token = db.Column(db.Text, unique=True, nullable=False, index=True)
+    token = db.Column( db.String(512), unique=True, nullable=False, index=True)
 
     user_id = db.Column(
         db.Integer,

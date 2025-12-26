@@ -3,6 +3,9 @@ from flask import Flask
 from app.extensions import db, migrate, jwt, cors
 from app.config import config_mapping
 from app.auth.routes.auth_route import auth_bp
+from app.leaderboard.routes import leader_bp
+from app.stats.routes import stats_bp
+from app.typing.routes import text_bp
 from app.users.routes.profile_route import profile_bp
 
 def create_app():
@@ -40,5 +43,8 @@ def create_app():
     # register blueprints
     app.register_blueprint(auth_bp)
     app.register_blueprint(profile_bp)
+    app.register_blueprint(stats_bp)
+    app.register_blueprint(text_bp)
+    app.register_blueprint(leader_bp)
 
     return app

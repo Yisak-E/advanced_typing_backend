@@ -18,10 +18,10 @@ class TypingStats(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    wpm = db.Column(db.Integer, nullable=False)
-    accuracy = db.Column(db.Float, nullable=False)
-    chars_typed = db.Column(db.Integer, nullable=False)
-    time_spent_sec = db.Column(db.Integer, nullable=False)
+    wpm = db.Column(db.Integer)
+    accuracy = db.Column(db.Float)
+    chars_typed = db.Column(db.Integer)
+    duration_seconds = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
 
     def __repr__(self):
@@ -34,6 +34,6 @@ class TypingStats(db.Model):
             "wpm": self.wpm,
             "accuracy": self.accuracy,
             "chars_typed": self.chars_typed,
-            "time_spent_sec": self.time_spent_sec,
+            "duration_seconds": self.duration_seconds,
             "created_at": self.created_at.isoformat()
         }
